@@ -13,7 +13,7 @@
                 <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Bastian Noor Wahyudi</a>
+                <a href="#" class="d-block">{{auth()->user()->name}}</a>
             </div>
         </div>
 
@@ -113,7 +113,7 @@
                     <ul class="nav nav-treeview" style="display: none">
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="far fa-circle text-danger nav-icon"></i>
+                                <i class="far fa-circle text-info nav-icon"></i>
                                 <p>Login</p>
                             </a>
                         </li>
@@ -121,6 +121,12 @@
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle text-warning nav-icon"></i>
                                 <p> Register</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('logout')}}" class="nav-link">
+                                <i class="far fa-circle text-danger nav-icon"></i>
+                                <p> Logout</p>
                             </a>
                         </li>
                     </ul>

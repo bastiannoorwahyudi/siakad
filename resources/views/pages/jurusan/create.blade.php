@@ -27,15 +27,23 @@
                 <div class="col-md-8">
                     <div class="card card-outline card-info">
                         <div class="card-header">
-                            <form action="#">
+                            <form action="{{ route('jurusan-store')}}" method="POST">
+                                @csrf
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="">Kode Jurusan</label>
-                                        <input type="text" name="kode_jurusan" class="form-control" placeholder="ex. EB">
+                                        <input type="text" name="KodeJurusan" class="form-control @error('KodeJurusan') is-invalid @enderror" placeholder="ex. EB" value="{{old('KodeJurusan')}}">
+                                        {{-- membuat pesan error --}}
+                                        @error('KodeJurusan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="">Nama Jurusan</label>
-                                        <input type="text" name="nama_jurusan" class="form-control" placeholder="ex. Ekonomi dan Bisnis">
+                                        <input type="text" name="NamaJurusan" class="form-control @error('NamaJurusan') is-invalid @enderror" placeholder="ex. Ekonomi dan Bisnis" value="{{old('NamaJurusan')}}">
+                                        @error('NamaJurusan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

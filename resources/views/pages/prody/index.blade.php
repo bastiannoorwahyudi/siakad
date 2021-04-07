@@ -13,7 +13,6 @@
                         Prody List
                         <small><i> (Program Study)</i></small>
                     </h3>
-                    
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -24,6 +23,13 @@
             </div>
         </div>
     </section>
+
+    {{-- pesan saat save berhasil --}}
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{session('status')}}
+        </div>
+    @endif
 
     <section class="content">
         <div class="card">
@@ -41,34 +47,17 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-strip">
+                <table class="table table-strip w-100" id="crudTable">
                     <thead>
                         <tr>
-                            <th width="70px">#</th>
-                            <th width="100px">KODE</th>
-                            <th width="250px">PRODY</th>
-                            <th width="250px">JURUSAN</th>
-                            <th width="100px">AKSI</th>
+                            <th>#</th>
+                            <th>KODE PRODY</th>
+                            <th>PROGRAM STUDY</th>
+                            <th>JURUSAN</th>
+                            <th>AKSI</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>AL</td>
-                            <td>Aljabar Linear</td>
-                            <td>Teknik Informatika</td>
-                            <td>
-                                <a href="{{route('prody-edit')}}" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
-                                <form action="#" class="d-inline">
-                                    <button class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i> Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
             <div class="card-footer">
@@ -77,3 +66,29 @@
         </div>
     </section>
 @endsection
+
+@push('addon-script')
+    <script>
+        var datatable = $('#crudTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ordering: true,
+            ajax: {
+                url : '{!! url()->current() !!}',
+            },
+            columns: [
+                {data: 'DT_RowIndex', orderable: false, searcable: false},
+                {data: 'KodePrody', name: 'KodePrody'},
+                {data: 'ProgramStudy', name: 'ProgramStudy'},
+                {data: 'jurusan.NamaJurusan', name: 'jurusan.NamaJurusan'},
+                {
+                    data: 'action',
+                    name:'action',
+                    orderable: false,
+                    searcable: false,
+                    width: '15%'
+                },
+            ]
+        })
+    </script>
+@endpush

@@ -21,6 +21,13 @@
         </div>
     </section>
 
+    {{-- pesan saat save berhasil --}}
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{session('status')}}
+        </div>
+    @endif
+
     <section class="content">
         <div class="card">
             <div class="card-header">
@@ -47,21 +54,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>TI</td>
-                            <td>Teknik Informatika</td>
-                            <td>
-                                <a href="{{route('jurusan-edit')}}" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
-                                <form action="#" class="d-inline">
-                                    <button class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i> Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                        @foreach ($data_jurusan as $dj)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $dj->KodeJurusan }}</td>
+                                <td>{{ $dj->NamaJurusan }}</td>
+                                <td>
+                                    <a href="{{route('jurusan-edit', $dj->id)}}" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <form action="{{route('jurusan-delete', $dj->id)}}" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

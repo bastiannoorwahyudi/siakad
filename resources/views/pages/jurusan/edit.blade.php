@@ -27,15 +27,17 @@
                 <div class="col-md-8">
                     <div class="card card-outline card-warning">
                         <div class="card-header">
-                            <form action="#">
+                            <form action="{{route('jurusan-update', $jurusan->id)}}" method="POST">
+                                @method('patch')
+                                @csrf
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="">Kode Jurusan</label>
-                                        <input type="text" name="kode_jurusan" class="form-control" value="TI">
+                                        <input type="text" name="KodeJurusan" class="form-control" value="{{ $jurusan->KodeJurusan }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Nama Jurusan</label>
-                                        <input type="text" name="nama_jurusan" class="form-control" value="Teknik Informatika">
+                                        <input type="text" name="NamaJurusan" class="form-control" value="{{ $jurusan->NamaJurusan }}">
                                     </div>
                                 </div>
                             </div>

@@ -16,7 +16,7 @@ class CreateProgramstudyTable extends Migration
         Schema::create('programstudy', function (Blueprint $table) {
             $table->id();
             $table->string('KodePrody', 5)->unique();
-            $table->string('ProgramStudy, 200');
+            $table->string('ProgramStudy', '200');
             $table->integer('JurusanID');
             $table->timestamps();
         });

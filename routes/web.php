@@ -38,11 +38,15 @@ Route::group(['middleware' => 'auth'],function() {
 
     Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan');
     Route::get('/jurusan/create', [JurusanController::class, 'create'])->name('jurusan-create');
-    Route::get('/jurusan/edit', [JurusanController::class, 'edit'])->name('jurusan-edit');
+    Route::post('/jurusan', [JurusanController::class, 'store'])->name('jurusan-store');
+    Route::get('/jurusan/{id}/edit', [JurusanController::class, 'edit'])->name('jurusan-edit');
+    Route::patch('/jurusan/{id}/update', [JurusanController::class, 'update'])->name('jurusan-update');
+    Route::get('/jurusan/{id}/delete', [JurusanController::class, 'destroy'])->name('jurusan-delete');
 
     Route::get('/prody', [ProdyController::class, 'index'])->name('prody');
     Route::get('/prody/create', [ProdyController::class, 'create'])->name('prody-create');
-    Route::get('/prody/edit', [ProdyController::class, 'edit'])->name('prody-edit');
+    Route::get('/prody/{id}/edit', [ProdyController::class, 'edit'])->name('prody-edit');
+    Route::get('/prody/{id}/delete', [ProdyController::class, 'destroy'])->name('prody-delete');
 
     Route::get('/dosen', [DosenController::class, 'index'])->name('dosen');
     Route::get('/dosen/create', [DosenController::class, 'create'])->name('dosen-create');
